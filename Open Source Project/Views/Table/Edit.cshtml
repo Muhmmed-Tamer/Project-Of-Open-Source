@@ -1,0 +1,45 @@
+﻿@model Table
+<partial name="_HeaderPartialView" />
+
+<h1>You Are Modified (@Model.TableName) Table</h1>
+<div class="card shadow border-0 mt-4">
+	<div class="card-header bg-secondary bg-gradient mi-0 py-3">
+		<div class="row">
+			<div class="col-12 text-center">
+				<h2 class="text-white py-2">Edit Table (@Model.TableName)</h2>
+			</div>
+		</div>
+	</div>
+	<div class="card-body p-4">
+		<form  asp-action="SaveEdit" asp-controller="Table" method="post">
+			<div class="border p-3 mt-4">
+				<div class="row pb-2">
+					<h2 class="text-primary">Edit Category</h2>
+					<hr />
+				</div>
+				<div asp-validation-summary="All" class="text-danger"></div>
+				<div class="mb-3 row">
+					<label asp-for="@Model.TableName" class="p-0"></label>
+					<input asp-for="@Model.TableName" class="form-control" />
+					<span asp-validation-for="@Model.TableName" class="text-danger"></span>
+				</div>
+				<input asp-for="@Model.Id" hidden />
+				<div class="mb-3 row">
+					<label asp-for="@Model.Capacity" class="p-0"></label>
+					<input asp-for="@Model.Capacity" class="form-control" />
+					<span asp-validation-for="@Model.Capacity" class="text-danger"></span>
+				</div>
+				<div class="row">
+					<div class="col-6 col-md-3">
+						<button type="submit" class="btn btn-primary border form-control" style="width:150px">Modified</button>
+					</div>
+					<div class="col-6 col-md-3">
+						<a asp-controller="Table" asp-action="AllTables" class="btn btn-secondary" style="width:150px">All Tables</a>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	@section Scripts {
+		<partial name="_ValidationScriptsPartial" />
+	}

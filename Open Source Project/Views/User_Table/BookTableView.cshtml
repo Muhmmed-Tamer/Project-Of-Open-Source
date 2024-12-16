@@ -1,0 +1,13 @@
+﻿@model Table
+<div class="container row pt-4">
+	<div class="col-12 text-center">
+	<a asp-action="Index" asp-controller="Home" class=" Cover-Preview d-none" style="width:200px;height:200px;border-radius:30px;margin-top:15px " >Back To Home</a>
+		<h1 class="text-primary text-center ">Table Booked Successfully</h1>
+		<br /><br />
+		<img src="/assets/img/istockphoto-2032134576-1024x1024.jpg" width="65%" />
+	</div>
+	<div class="col-12 text-center style="color:maroon">
+		<br />
+		Your Book A Table Number (@Model.TableName) Successfully
+	</div>
+</div>

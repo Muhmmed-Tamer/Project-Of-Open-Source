@@ -1,0 +1,53 @@
+﻿@model List<Table>
+<partial name="_HeaderPartialView" />
+
+<div class="card shadow border-0 mt-4">
+	<div class="card-header bg-secondary bg-gradient mi-0 py-3">
+		<div class="row">
+			<div class="col-12 text-center">
+				<h2 class="text-white py-2">All Tables</h2>
+			</div>
+		</div>
+	</div>
+	<div class="card-body p-4">
+		<a  asp-controller="Table" asp-action="Add" class="btn btn-primary mx-2 mb-3"><i class="fa-sharp fa-solid fa-circle-plus"></i>  Create New Table</a>
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>
+						Table Number
+					</th>
+					<th>
+						Capacity
+					</th>
+					<th>
+						Status
+					</th>
+					
+				<tr />
+			</thead>
+			@* Looping In Products To Display In Table *@
+			<tbody>
+				@foreach (var Table in Model)
+				{
+					<tr>
+						<td>
+							@Table?.TableName
+						</td>
+						<td>
+							@Table?.Capacity
+						</td>
+						<td>
+							@Table?.Status
+						</td>						
+						<td>
+							<a  asp-controller="Table" asp-action="Edit" asp-route-id="@Table?.Id" class="btn btn-primary mx-2"><i class="fa-solid fa-pen-to-square"></i>Edit</a>
+						</td>
+						<td>
+							<a  asp-controller="Table" asp-action="Delete" asp-route-id="@Table?.Id" class="btn btn-danger mx-2"><i class="fa-solid fa-trash"></i>Delete</a>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
