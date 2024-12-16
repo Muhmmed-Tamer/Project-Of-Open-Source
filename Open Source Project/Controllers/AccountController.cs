@@ -31,8 +31,9 @@ namespace Open_Source_Project.Controllers
                 Application_User.PasswordHash = User.Password;
                 Application_User.PhoneNumber = User.PhoneNumber;
 
+                IdentityResult RoleResult = await UnitOfWork.RoleManager.CreateAsync(new IdentityRole("RegularUser"));
                 IdentityResult Result = await UnitOfWork.User_Manager.CreateAsync(Application_User , User.Password);
-                if (Result.Succeeded) 
+                if (Result.Succeeded&& RoleResult.Succeeded) 
                 {
                      await UnitOfWork.SignInManager.SignInAsync(Application_User,true);
                     return RedirectToAction("Index" , controllerName: "Home");
@@ -48,18 +49,22 @@ namespace Open_Source_Project.Controllers
         }
         public async Task<IActionResult> SaveLogin(ApplicationLoginUser User)
         {
-            if (ModelState.IsValid) 
+            if (ModelState.IsValid && User.LoginAs != "Not Role") 
             {
                 ApplicationUser ApplicationUserFromDataBase  = await UnitOfWork.User_Manager.FindByEmailAsync(User.Email);
                 if (ApplicationUserFromDataBase != null) {
                     bool VaildPassword = await  UnitOfWork.User_Manager.CheckPasswordAsync(ApplicationUserFromDataBase , User.Password);
-                    if (VaildPassword) {
+                    IList<string> RoleOfLoginUser =await  UnitOfWork.User_Manager.GetRolesAsync(ApplicationUserFromDataBase);
+                    
+                    if (VaildPassword&& RoleOfLoginUser.Contains(User.LoginAs)) {
                         await UnitOfWork.SignInManager.SignInAsync(ApplicationUserFromDataBase, User.RememberMe);
                         return RedirectToAction("Index", controllerName:"Home");
                     }
                 }
-                ModelState.AddModelError("", "The Email Or Password Is Incorrect");
+                ModelState.AddModelError("", "The Email Or Password Or Role Is Incorrect");
+                return View("Login", User);
             }
+            ModelState.AddModelError("LoginAs", "Please Select Your Role");
             return View("Login", User);
         }
         public IActionResult Logout()

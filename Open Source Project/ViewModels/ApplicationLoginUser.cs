@@ -9,6 +9,8 @@ namespace Open_Source_Project.ViewModels
         public string Email {  get; set; }
         [DataType(DataType.Password)]
         public string Password { get; set; }
+        [DisplayName("Login As")]
+        public string LoginAs {  get; set; }
         [DisplayName("Remember Me")]
         public bool RememberMe { get; set; }
     }

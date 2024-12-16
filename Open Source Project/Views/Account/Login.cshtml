@@ -1,6 +1,11 @@
-﻿@using Open_Source_Project.ViewModels
+﻿@using Open_Source_Project.Repository
+@using Open_Source_Project.ViewModels
 @model ApplicationLoginUser
-
+@inject IUnitOfWork UnitOfWork;
+@{
+    var AllRolesInDataBase = UnitOfWork.RoleManager.Roles;
+    SelectList Roles = new SelectList(AllRolesInDataBase , "Name" , "Name");
+}
 <h3>Login</h3>
 
 
@@ -18,6 +23,12 @@
                 <label asp-for="Password" class="control-label"></label>
                 <input asp-for="Password" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LoginAs" class="control-label"></label>
+                <select asp-for="LoginAs" asp-items="Roles"  class="form-select" aria-label="Default select example">
+                    <option value="Not Role">--Select Role--</option>
+                </select>
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">

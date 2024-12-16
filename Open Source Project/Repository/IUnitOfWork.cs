@@ -9,5 +9,6 @@ namespace Open_Source_Project.Repository
         public IUser_TableRepository User_Table { get; }
         public UserManager<ApplicationUser> User_Manager { get; set; }
         public SignInManager<ApplicationUser> SignInManager { get; set; } 
+        public RoleManager<IdentityRole> RoleManager { get; set; }
     }
 }
