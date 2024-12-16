@@ -31,8 +31,8 @@ namespace Open_Source_Project.Controllers
                 Application_User.PasswordHash = User.Password;
                 Application_User.PhoneNumber = User.PhoneNumber;
 
-                IdentityResult RoleResult = await UnitOfWork.RoleManager.CreateAsync(new IdentityRole("RegularUser"));
                 IdentityResult Result = await UnitOfWork.User_Manager.CreateAsync(Application_User , User.Password);
+                IdentityResult RoleResult = await UnitOfWork.User_Manager.AddToRoleAsync(Application_User, "RegularUser");
                 if (Result.Succeeded&& RoleResult.Succeeded) 
                 {
                      await UnitOfWork.SignInManager.SignInAsync(Application_User,true);
