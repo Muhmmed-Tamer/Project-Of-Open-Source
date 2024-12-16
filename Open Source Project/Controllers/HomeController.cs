@@ -7,28 +7,39 @@ namespace Open_Source_Project.Controllers
 {
    [Authorize]
     public class HomeController : Controller
-    {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
+    {        
 
         public IActionResult Index()
         {
-            return View();
+            return View("Index");
         }
-
-        public IActionResult Privacy()
+        public IActionResult Chef()
         {
-            return View();
+            return View("Chef");
         }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public IActionResult About()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View("About");
+        }
+        public IActionResult Menu()
+        {
+            return View("Menu");
+        }
+        public IActionResult BookATable()
+        {
+            return View("BookATable");
+        }
+        public IActionResult Gallery()
+        {
+            return View("Gallery");
+        }
+        public IActionResult Events()
+        {
+            return View("Events");
+        }
+        public IActionResult Specials()
+        {
+            return View("Specials");
         }
     }
 }

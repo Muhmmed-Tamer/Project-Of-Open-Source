@@ -30,6 +30,7 @@ namespace Open_Source_Project.Controllers
                 user_table.TableId = TableId;
                 user_table.ApplicationUserId = ApplicationUserId;
                 UnitOfWork.User_Table.Add(user_table);
+                UnitOfWork.Table.Update(TableUserWouldToBookIt);
                 UnitOfWork.User_Table.Save();
                 UnitOfWork.Table.Save();
                 return View("BookTableView", TableUserWouldToBookIt);
@@ -49,10 +50,7 @@ namespace Open_Source_Project.Controllers
             {
                 User_Tables = UnitOfWork.User_Table.BookedTableByUser(id);
             }
-            return View("AllBookedATableByUser", User_Tables);
+            return PartialView("AllBookedATableByUser", User_Tables);
         }
-
-
-
     }
 }

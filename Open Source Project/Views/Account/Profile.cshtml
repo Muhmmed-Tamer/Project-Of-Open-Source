@@ -1,12 +1,13 @@
 ﻿@model ApplicationUser
 
+<partial name="_CdnCssJs" />
 <partial name="_HeaderPartialView" />
 
 
 <h4 style="text-align:center">Profile Of @(Model.FirstName+ " " +Model.LastName  )</h4>
 <hr />
 <div class="row" style="margin:auto">
-    <a asp-action="AllBookedATableByUser" class="btn btn-primary mx-2 mb-3" asp-controller="User_Table" asp-route-id ="@Model.Id">All Booked A Table</a>
+    <a asp-action="AllBookedATableByUser" class="btn btn-primary mx-2 mb-3" style="margin-top:50px;" asp-controller="User_Table" asp-route-id ="@Model.Id">All Booked A Table</a>
     <div class="col-md-4">
         @*Start Of  Form *@
         <div class="form-group">

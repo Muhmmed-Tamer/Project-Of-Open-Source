@@ -9,6 +9,7 @@ namespace Open_Source_Project.Controllers
 {
     public class AccountController : Controller
     {
+        //Dependency Injection
         IUnitOfWork UnitOfWork;
         public AccountController(IUnitOfWork unitOfWork)
         {
@@ -24,6 +25,7 @@ namespace Open_Source_Project.Controllers
             ApplicationUser Application_User = new ApplicationUser();
             if (ModelState.IsValid) 
             {
+                //Mapping User 
                 Application_User.FirstName = User.FirstName;
                 Application_User.LastName = User.LastName;
                 Application_User.Email = User.Email;
@@ -31,8 +33,8 @@ namespace Open_Source_Project.Controllers
                 Application_User.PasswordHash = User.Password;
                 Application_User.PhoneNumber = User.PhoneNumber;
 
-                IdentityResult RoleResult = await UnitOfWork.RoleManager.CreateAsync(new IdentityRole("RegularUser"));
                 IdentityResult Result = await UnitOfWork.User_Manager.CreateAsync(Application_User , User.Password);
+                IdentityResult RoleResult = await UnitOfWork.User_Manager.AddToRoleAsync(Application_User, "RegularUser");
                 if (Result.Succeeded&& RoleResult.Succeeded) 
                 {
                      await UnitOfWork.SignInManager.SignInAsync(Application_User,true);
@@ -80,7 +82,7 @@ namespace Open_Source_Project.Controllers
         public async Task<IActionResult> Profile(string id)
         {
             ApplicationUser AppUser = await UnitOfWork.User_Manager.FindByIdAsync(id);
-            return View("Profile" , AppUser);
+            return PartialView("Profile" , AppUser);
         }
     }
 }

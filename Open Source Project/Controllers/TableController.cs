@@ -15,7 +15,7 @@ namespace Open_Source_Project.Controllers
         }
        public IActionResult Add()
         {
-            return View("Add");
+            return PartialView("Add");
         }
         [HttpPost]
         public IActionResult SaveAdd(Table table)
@@ -25,12 +25,12 @@ namespace Open_Source_Project.Controllers
                 UnitOfWork.Table.Save();
                 return RedirectToAction("AllTables");
             }
-            return View("Add" , table);
+            return PartialView("Add" , table);
         }
         public IActionResult AllTables()
         {
            List<Table> Tables =  UnitOfWork.Table.GetAll();
-            return View("AllTables", Tables);
+            return PartialView("AllTables", Tables);
         }
         public IActionResult Delete(int id) {
             UnitOfWork.Table.Delete(id);
@@ -40,7 +40,7 @@ namespace Open_Source_Project.Controllers
         public IActionResult Edit(int id)
         {
             Table Edittable = UnitOfWork.Table.GetById(id);
-            return View("Edit" , Edittable);
+            return PartialView("Edit" , Edittable);
         }
         public IActionResult SaveEdit(int id,Table table)
         {
@@ -54,7 +54,7 @@ namespace Open_Source_Project.Controllers
                 UnitOfWork.Table.Save();
                 return RedirectToAction("AllTables");
             }
-            return View("Edit", table);
+            return PartialView("Edit", table);
         }
     }
 }

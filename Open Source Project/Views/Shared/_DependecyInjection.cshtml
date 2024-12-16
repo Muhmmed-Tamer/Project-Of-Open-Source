@@ -1,0 +1,23 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Open_Source_Project.Repository
+@using System.Security.Claims
+@inject IUnitOfWork UnitOfWork;
+@{
+    ViewData["Title"] = "Home Page";
+    var Data = UnitOfWork.User_Table.GetAll();
+    foreach (var item in Data)
+    {
+
+        if (item.ExpiredOfBookATable <= DateTime.Now)
+        {
+            item.Table.Status = Utility.TableAvailable;
+            UnitOfWork.Table.Save();
+        }
+    }
+    SelectList Tables = new SelectList(UnitOfWork.Table.GetTableIsAvailable(), "Id", "TableName");
+
+    ClaimsIdentity UserIdentity = (ClaimsIdentity)User.Identity;
+    string ApplicationUserId = UserIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+    ApplicationUser AppUser = await UnitOfWork.User_Manager.FindByIdAsync(ApplicationUserId);
+}

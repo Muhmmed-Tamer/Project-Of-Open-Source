@@ -12,7 +12,7 @@ namespace Open_Source_Project.Models
         public string TableName{ get; set; }
         [Range(1, 4)]
         public int Capacity { get; set; }
-        public string Status { get; set; }       
+        public string Status { get; set; }// Available NotAvailable
         public ICollection<User_Table>? User_Tables { get; set; }
     }
 }

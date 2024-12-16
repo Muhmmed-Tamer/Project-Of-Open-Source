@@ -12,6 +12,6 @@ namespace Open_Source_Project.Models
         public int TableId {  get; set; }
         //Extra Data 
         public DateTime BookedTableAt { get; set; } = DateTime.Now;
-        public DateTime ExpiredOfBookATable { get; set; } = DateTime.Now.AddMinutes(2);
+        public DateTime ExpiredOfBookATable { get; set; } = DateTime.Now.AddMinutes(30);
     }
 }
