@@ -1,7 +1,7 @@
 ﻿@model List<User_Table>
 
-<partial name="_HeaderPartialView" />
 
+<partial name="_HeaderPartialView" />
 <div class="card shadow border-0 mt-4">
 	<div class="card-header bg-secondary bg-gradient mi-0 py-3">
 		<div class="row">
@@ -14,6 +14,7 @@
 		<table class="table table-bordered table-striped">
 			<thead>
 				<tr>
+
 					@if(User.IsInRole("Admin")){
 						<th>
 							User Name
@@ -38,8 +39,7 @@
 						<th>
 							Table Is Available At
 						</th>
-					}
-
+					}					
 				<tr />
 			</thead>
 			@* Looping In Products To Display In Table *@
@@ -74,7 +74,7 @@
 								@User_Table?.ExpiredOfBookATable
 							</td>
 						</tr>
-					}
+					}					
 				}
 			</tbody>
 		</table>
