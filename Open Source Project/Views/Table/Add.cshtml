@@ -1,0 +1,56 @@
+﻿@model Table
+
+<div class="card shadow border-0 mt-4">
+	<div class="card-header bg-secondary bg-gradient mi-0 py-3">
+		<div class="row">
+			<div class="col-12 text-center">
+				<h2 class="text-white py-2">Create Table</h2>
+			</div>
+		</div>
+	</div>
+	<div class="card-body p-4">
+		<form action="SaveAdd" method="post" enctype="multipart/form-data">
+			<div class="row">
+				<div class="col-10">
+					<div class="border p-3 mt-4">
+						<div class="row pb-2">
+							<h2 class="text-primary">Create Table</h2>
+							<hr />
+						</div>
+						<div asp-validation-summary="All" class="text-danger"></div>
+						<input asp-for="Status" type="hidden" value="@Utility.TableAvailable"  />
+						<div class="mb-3 row">
+							<label asp-for="@Model.TableName" class="p-0"></label>
+							<input asp-for="@Model.TableName" class="form-control" />
+							<span asp-validation-for="@Model.TableName" class="text-danger"></span>
+						</div>
+						<div class="mb-3 row">
+							<label asp-for="@Model.Capacity" class="p-0"></label>
+							<input asp-for="@Model.Capacity" class="form-control" />
+							<span asp-validation-for="@Model.Capacity" class="text-danger"></span>
+						</div>
+						
+						<div class="row">
+							<div class="col-6 col-md-3">
+								<button type="submit" class="btn btn-primary border form-control" style="width:150px">Create</button>
+							</div>
+							<div class="col-6 col-md-3">
+								<a asp-controller="Product" asp-action="All" class="btn btn-secondary" style="width:150px">All Products</a>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<div class="col-2">
+					<img alt="Alternate Text" class="Cover-Preview d-none" style="width:200px;height:200px;border-radius:30px;margin-top:15px" />
+				</div>
+			</div>
+
+		</form>
+	</div>
+</div>
+
+@*Client-Side Validation*@
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />	
+}

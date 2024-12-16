@@ -1,0 +1,45 @@
+﻿@model List<User_Table>
+
+<div class="card shadow border-0 mt-4">
+	<div class="card-header bg-secondary bg-gradient mi-0 py-3">
+		<div class="row">
+			<div class="col-12 text-center">
+				<h2 class="text-white py-2">All Booked Tables</h2>
+			</div>
+		</div>
+	</div>
+	<div class="card-body p-4">
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>
+						You Booked Table Number
+					</th>
+					<th>
+						Booked Table At
+					</th>
+					<th>
+						Table Is Available At
+					</th>
+
+				<tr />
+			</thead>
+			@* Looping In Products To Display In Table *@
+			<tbody>
+				@foreach (var User_Table in Model)
+				{
+					<tr>
+						<td>
+							@User_Table?.Table.TableName
+						</td>
+						<td>
+							@User_Table?.BookedTableAt
+						</td>
+						<td>
+							@User_Table?.ExpiredOfBookATable
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>

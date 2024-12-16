@@ -1,0 +1,22 @@
+﻿@model ApplicationUser
+<h4>Profile Of @(Model.FirstName+ " " +Model.LastName  )</h4>
+<hr />
+<div class="row" style="margin:auto">
+    <a asp-action="AllBookedATableByUser" class="btn btn-primary mx-2 mb-3" asp-controller="User_Table" asp-route-id ="@Model.Id">All Booked A Table</a>
+    <div class="col-md-4">
+        @*Start Of  Form *@
+        <div class="form-group">
+            <label asp-for="UserName" class="control-label"></label>
+            <input asp-for="UserName" class="form-control" disabled />
+        </div>
+        <div class="form-group">
+            <label asp-for="PhoneNumber" class="control-label"></label>
+            <input asp-for="PhoneNumber" class="form-control" disabled />
+        </div>
+        <div class="form-group">
+            <label asp-for="Email" class="control-label"></label>
+            <input asp-for="Email" class="form-control" disabled />
+        </div>
+        @* End Of Form *@
+    </div>
+</div>
