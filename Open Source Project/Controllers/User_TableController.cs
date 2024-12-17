@@ -50,7 +50,7 @@ namespace Open_Source_Project.Controllers
             {
                 User_Tables = UnitOfWork.User_Table.BookedTableByUser(id);
             }
-            return PartialView("AllBookedATableByUser", User_Tables);
+            return View("AllBookedATableByUser", User_Tables);
         }
     }
 }

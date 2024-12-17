@@ -82,7 +82,7 @@ namespace Open_Source_Project.Controllers
         public async Task<IActionResult> Profile(string id)
         {
             ApplicationUser AppUser = await UnitOfWork.User_Manager.FindByIdAsync(id);
-            return PartialView("Profile" , AppUser);
+            return View("Profile" , AppUser);
         }
     }
 }
